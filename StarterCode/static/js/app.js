@@ -7,38 +7,44 @@ function unpack(rows,index) {
 }
 
 function buildPlots() {
-    d3.json(sample_data)
-            .then(function(data) {
-                console.log(data)
-                var metadata = data.metadata
-                console.log(metadata)
-                var names = data.names
-                console.log(names)
-                var samples = data.samples
-                console.log(samples)
+    d3.json(sample_data).then(function(data) {
+        console.log(data)
+        var metadata = data.metadata
+        // console.log(metadata)
+        var names = data.names
+        // console.log(names)
+        var samples = data.samples
+        // console.log(samples)
 
-                var values = samples.map(sample => sample.sample_values)
-                console.log(values)
-                var labels = samples.map(sample => sample.otu_ids)
-                console.log(labels)
-                var hovertext = samples.map(sample => sample.otu_labels)
-                console.log(hovertext)
+        var values = samples.map(sample => sample.sample_values)
+        // console.log(values)
+        var value = values[0]
+        // console.log(value)
 
-                var trace = {
-                    type: "bar",
-                    x: labels,
-                    y: values,
-                    orientation: "h"
-                }
-                
-                var data = [trace]
-                
-                var layout = {
-                    title: "Top 10 Bacteria Cultures Observed"
-                }
-                
-                Plotly.newPlot("bar",data,layout)
+        var labels = samples.map(sample => sample.otu_ids)
+        // console.log(labels)
+        var label = labels[0]
+
+        var hovertexts = samples.map(sample => sample.otu_labels)
+        // console.log(hovertexts)
+        var hovertext = hovertexts[0]
+        
+        var trace = {
+            type: "bar",
+            x: label.slice(0,10),
+            y: value,
+            text: hovertext,
+            orientation: "h"
+        }
+    
+        var data = [trace]
+    
+        var layout = {
+            title: "Top 10 Bacteria Cultures Observed"
+        }
+    
+        Plotly.newPlot("bar",data,layout)
     })
-}
+}           
 
 buildPlots()
