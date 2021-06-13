@@ -1,18 +1,19 @@
-var sample_data = "samples.json"
+var json = "samples.json"
 
-function unpack(rows,index) {
-    return rows.map(function(row) {
-        return row[index];
-    });
+function init() {
+    d3.json(json).then(function(data){
+        let json_data = data
+        // console.log(json_data)
+        var names = json_data.names
+        console.log(names)
+    })
 }
 
 function buildPlots() {
-    d3.json(sample_data).then(function(data) {
+    d3.json(json).then(function(data) {
         console.log(data)
         var metadata = data.metadata
         // console.log(metadata)
-        var names = data.names
-        // console.log(names)
         var samples = data.samples
         // console.log(samples)
 
@@ -47,4 +48,5 @@ function buildPlots() {
     })
 }           
 
-buildPlots()
+init()
+// buildPlots()
