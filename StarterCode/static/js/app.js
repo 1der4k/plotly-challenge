@@ -3,7 +3,7 @@ var json = "samples.json"
 function init() {
     d3.json(json).then(function(data){
         var json_data = data
-        // console.log(json_data)
+        console.log(json_data)
         var names = json_data.names
         // console.log(names)
 
@@ -93,31 +93,29 @@ function eventHandler() {
     d3.event.preventDefault();
 
     var dropdown = d3.select("#selDataset");
-    var 
+    var subject = dropdown("value")
     dropdown.on("change",updateCharts)
 }
 
 function updateCharts() {
     var dropdown = d3.select("#selDataset");
-    var option = dropdown.property("value");
+    var dp_value = dropdown.property("value");
+    // console.log(dp_value);
 
-    // d3.json(json).then(function(data){
-    //     var json_data = data
-    //     var names = json_data.names
-    //     console.log(names)
-
-    //     var name_indices = names.map(
-    //         names.forEach(function(item,index) {
-    //             names => names.index
-    //         )
+    d3.json(json).then(function(data) {
+        var json_data = data
+        var names = json_data.names
+        var names_indices = names.map((item,index) => [index,item])
+        // console.log(names_indices)
         
-
-    //     })
-    
-        
-    // })
-
-
+        names_indices.forEach(function(item){
+            // console.log(item)
+            if (dp_value === item[1]) {
+                var subject = item[0]
+                console.log(subject)
+            }   
+        })
+    })
 }
 
 // d3.json(json).then(function(data){
