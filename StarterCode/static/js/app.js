@@ -98,9 +98,11 @@ function updateCharts() {
     let dropdown = d3.select("#selDataset");
     let option = dropdown.property("value");
 
+
     d3.json(json).then(function(data){
         var json_data = data
         var names = json_data.names
+        console.log(names)
         names.forEach(function(item,index) {
             console.log(index,item)
         })
