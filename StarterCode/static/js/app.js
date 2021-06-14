@@ -15,10 +15,7 @@ function init() {
         
         buildPlots()
 
-        function eventHandler() {
-            let dropdown = d3.select("#selDataset")
-            dropdown.on("change",updateCharts)
-        }
+        
     })    
 }
 
@@ -92,23 +89,35 @@ function buildPlots() {
     })
 }           
 
+function eventHandler() {
+    d3.event.preventDefault();
 
+    var dropdown = d3.select("#selDataset");
+    var 
+    dropdown.on("change",updateCharts)
+}
 
 function updateCharts() {
-    let dropdown = d3.select("#selDataset");
-    let option = dropdown.property("value");
+    var dropdown = d3.select("#selDataset");
+    var option = dropdown.property("value");
 
+    // d3.json(json).then(function(data){
+    //     var json_data = data
+    //     var names = json_data.names
+    //     console.log(names)
 
-    d3.json(json).then(function(data){
-        var json_data = data
-        var names = json_data.names
-        console.log(names)
-        names.forEach(function(item,index) {
-            console.log(index,item)
-        })
+    //     var name_indices = names.map(
+    //         names.forEach(function(item,index) {
+    //             names => names.index
+    //         )
+        
+
+    //     })
     
         
-    })
+    // })
+
+
 }
 
 // d3.json(json).then(function(data){
