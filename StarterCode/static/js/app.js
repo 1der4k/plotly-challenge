@@ -1,26 +1,5 @@
 var json = "samples.json"
 
-function getJSONdata() {
-    d3.json(json).then(function(data) {
-        console.log(data)
-        var metadata = data.metadata
-        console.log(metadata)
-        var names = data.names
-        console.log(names)
-        var samples = data.samples
-        console.log(samples)
-
-        var values = samples.map(sample => sample.sample_values)
-        console.log(values)
-        var labels = samples.map(sample => sample.otu_ids)
-        consol.log(labels)
-        var hovertexts = samples.map(sample => sample.otu_labels)
-        console.log(hovertexts)
-    })
-}
-
-getJSONdata();
-
 function init() {
     d3.json(json).then(function(data){
         var json_data = data
