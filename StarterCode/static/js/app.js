@@ -2,23 +2,30 @@ var json = "samples.json"
 
 function init() {
     d3.json(json).then(function(data){
-        let json_data = data
+        var json_data = data
         // console.log(json_data)
         var names = json_data.names
-        console.log(names)
+        // console.log(names)
 
-        var dropdown = d3.select("#selDataset")
+        let dropdown = d3.select("#selDataset")
 
         names.forEach(function(name) {
         dropdown.append("option").attr("value",name).text(name)
         })
+        
+        buildPlots()
+
+        function eventHandler() {
+            let dropdown = d3.select("#selDataset")
+            dropdown.on("change",updateCharts)
+        }
     })    
 }
 
 function buildPlots() {
     // Capture data from json
     d3.json(json).then(function(data) {
-        console.log(data)
+        // console.log(data)
         var metadata = data.metadata
         // console.log(metadata)
         var samples = data.samples
@@ -77,7 +84,7 @@ function buildPlots() {
 
         var default_sample = metadata[0]
 
-        console.log(default_sample)
+        // console.log(default_sample)
         
         for ([key,value] of Object.entries(default_sample)) {
             panel.append("p").text(`${key} : ${value}`)
@@ -86,6 +93,32 @@ function buildPlots() {
 }           
 
 
+
+function updateCharts() {
+    let dropdown = d3.select("#selDataset");
+    let option = dropdown.property("value");
+
+    d3.json(json).then(function(data){
+        var json_data = data
+        var names = json_data.names
+        names.forEach(function(item,index) {
+            console.log(index,item)
+        })
+    
+        
+    })
+}
+
+// d3.json(json).then(function(data){
+//     var json_data = data
+//     var names = json_data.names
+//     var names_indices = []
+//     names.forEach(function(item,index) {
+//         console.log(index,item)
+//         // names_indices.push(index)
+//         // console.log(names_indices)
+//     })
+// })
+
 init()
 
-buildPlots()
