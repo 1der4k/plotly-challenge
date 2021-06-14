@@ -1,15 +1,19 @@
 var json = "samples.json"
 
-// function init() {
-//     d3.json(json).then(function(data){
-//         let json_data = data
-//         // console.log(json_data)
-//         var names = json_data.names
-//         console.log(names)
-//     })
+function init() {
+    d3.json(json).then(function(data){
+        let json_data = data
+        // console.log(json_data)
+        var names = json_data.names
+        console.log(names)
 
-//     d3.select("#selDataset")
-// }
+        var dropdown = d3.select("#selDataset")
+
+        names.forEach(function(name) {
+        dropdown.append("option").attr("value",name).text(name)
+        })
+    })    
+}
 
 function buildPlots() {
     // Capture data from json
@@ -82,6 +86,6 @@ function buildPlots() {
 }           
 
 
-
+init()
 
 buildPlots()
