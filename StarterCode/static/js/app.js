@@ -13,6 +13,7 @@ function init() {
         names.forEach(function(name) {
             dropdown.append("option").attr("value",name).text(name)
         })     
+        
         buildCharts(json_data)
         
         // eventHandler()
@@ -20,31 +21,33 @@ function init() {
 }
 
 function buildCharts(data) {
+    var dropdown = d3.select("#selDataset");
+    var sample_number = dropdown.property("value")
+    // console.log(sample_number)
+    
     // console.log(data)
     var metadata = data.metadata
     // console.log(metadata)
     var samples = data.samples
     // console.log(samples)
     
-    var values = samples.map(sample => sample.sample_values)
-    // console.log(values)
-    var value = values[0]
-    // console.log(value)
+    samples.forEach(function(sample) {
+        if (sample.id === sample_number) {
+            var otu_ids = sample.otu_ids;
+            var sample_values = sample.sample_values;
+            var otu_labels = sample.otu_labels;
 
-    var labels = samples.map(sample => sample.otu_ids)
-    // console.log(labels)
-    var label = labels[0]
-
-    var hovertexts = samples.map(sample => sample.otu_labels)
-    // console.log(hovertexts)
-    var hovertext = hovertexts[0]
-    
-    // Build horizontal bar graph
+            console.log(otu_ids)
+            console.log(sample_values)
+            console.log(otu_labels)
+        }
+        
+        // Build horizontal bar graph
     var trace1 = {
         type: "bar",
-        x: value.slice(0,10),
-        y: label.slice(0,10),
-        text: hovertext,
+        x: sample_values.slice(0,10),
+        y: otu_ids.slice(0,10),
+        text: otu_labels,
         orientation: "h"
     }
 
@@ -84,6 +87,22 @@ function buildCharts(data) {
     for ([key,value] of Object.entries(default_sample)) {
         panel.append("p").text(`${key} : ${value}`)
     }
+    })
+
+    // var values = samples.map(sample => sample.sample_values)
+    // // console.log(values)
+    // var value = values[0]
+    // // console.log(value)
+
+    // var labels = samples.map(sample => sample.otu_ids)
+    // // console.log(labels)
+    // var label = labels[0]
+
+    // var hovertexts = samples.map(sample => sample.otu_labels)
+    // // console.log(hovertexts)
+    // var hovertext = hovertexts[0]
+    
+    
 }
            
 
