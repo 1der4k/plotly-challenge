@@ -97,13 +97,43 @@ function eventHandler() {
     dropdown.on("change",updateCharts)
 }
 
+function resetData() {
+    demographicsPanel.html("");
+    barChart.html("");
+    bubbleChart.html("");
+    gaugeChart.html("");
+}
+
 function updateCharts() {
+
+    resetData()
+
     var dropdown = d3.select("#selDataset");
     var dp_value = dropdown.property("value");
     // console.log(dp_value);
 
     d3.json(json).then(function(data) {
         var json_data = data
+        
+        var metadata = data.metadata
+        // console.log(metadata)
+        
+        var samples = data.samples
+        // console.log(samples)
+        
+        var values = samples.map(sample => sample.sample_values)
+        // console.log(values)
+        // var value = values[0]
+        // console.log(value)
+
+        var labels = samples.map(sample => sample.otu_ids)
+        // console.log(labels)
+        // var label = labels[0]
+
+        var hovertexts = samples.map(sample => sample.otu_labels)
+        // console.log(hovertexts)
+        // var hovertext = hovertexts[0]
+
         var names = json_data.names
         var names_indices = names.map((item,index) => [index,item])
         // console.log(names_indices)
@@ -113,6 +143,8 @@ function updateCharts() {
             if (dp_value === item[1]) {
                 var subject = item[0]
                 console.log(subject)
+
+
             }   
         })
     })
