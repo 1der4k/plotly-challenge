@@ -16,7 +16,7 @@ function init() {
         
         buildCharts(json_data)
         
-        // eventHandler()
+        eventHandler()
     })    
 }
 
