@@ -47,7 +47,7 @@ function buildCharts(data) {
             type: "bar",
             x: sample_values.slice(0,10),
             y: otu_ids.slice(0,10),
-            text: otu_labels,
+            text: otu_labels.slice(0,10),
             orientation: "h"
             };
 
@@ -124,44 +124,6 @@ function updateCharts(sample_number) {
     buildCharts(json_data)
     
     })
-    // var dropdown = d3.select("#selDataset");
-    // var dp_value = dropdown.property("value");
-    // console.log(dp_value);
-
-    // d3.json(json).then(function(data) {
-    //     var json_data = data
-        
-    //     var metadata = data.metadata
-    //     // console.log(metadata)
-        
-    //     var samples = data.samples
-    //     // console.log(samples)
-        
-    //     var values = samples.map(sample => sample.sample_values)
-    //     // console.log(values)
-    //     // var value = values[0]
-    //     // console.log(value)
-
-    //     var labels = samples.map(sample => sample.otu_ids)
-    //     // console.log(labels)
-    //     // var label = labels[0]
-
-    //     var hovertexts = samples.map(sample => sample.otu_labels)
-    //     // console.log(hovertexts)
-    //     // var hovertext = hovertexts[0]
-
-    //     var names = json_data.names
-    //     var names_indices = names.map((item,index) => [index,item])
-    //     // console.log(names_indices)
-        
-    //     names_indices.forEach(function(item){
-    //         // console.log(item)
-    //         if (dp_value === item[1]) {
-    //             var subject = item[0]
-    //             console.log(subject)
-    //         }   
-    //     })
-    // })
 }
 
 init()
