@@ -94,32 +94,15 @@ function buildCharts(data) {
         }
     })
 };    
+
+function eventHandler() {
+    d3.event.preventDefault();
+
+    var dropdown = d3.select("#selDataset");
+    var sample_number = dropdown.property("value");
     
-
-    // var values = samples.map(sample => sample.sample_values)
-    // // console.log(values)
-    // var value = values[0]
-    // // console.log(value)
-
-    // var labels = samples.map(sample => sample.otu_ids)
-    // // console.log(labels)
-    // var label = labels[0]
-
-    // var hovertexts = samples.map(sample => sample.otu_labels)
-    // // console.log(hovertexts)
-    // var hovertext = hovertexts[0]
-    
-    
-
-           
-
-// function eventHandler() {
-//     d3.event.preventDefault();
-
-//     var dropdown = d3.select("#selDataset");
-//     var subject = dropdown("value")
-//     dropdown.on("change",updateCharts)
-// }
+    dropdown.on("change",updateCharts(sample_number))
+}
 
 // function resetData() {
 //     var demographicsPanel = d3.select("#sample-metadata");
@@ -131,61 +114,54 @@ function buildCharts(data) {
 //     bubbleChart.html("");
 // }
 
-// function updateCharts() {
+function updateCharts(sample_number) {
+    d3.json(json).then(function(data) {
+        var json_data = data
+    
 
-//     resetData()
+    // resetData()
 
-//     var dropdown = d3.select("#selDataset");
-//     var dp_value = dropdown.property("value");
-//     // console.log(dp_value);
+    buildCharts(json_data)
+    
+    })
+    // var dropdown = d3.select("#selDataset");
+    // var dp_value = dropdown.property("value");
+    // console.log(dp_value);
 
-//     d3.json(json).then(function(data) {
-//         var json_data = data
+    // d3.json(json).then(function(data) {
+    //     var json_data = data
         
-//         var metadata = data.metadata
-//         // console.log(metadata)
+    //     var metadata = data.metadata
+    //     // console.log(metadata)
         
-//         var samples = data.samples
-//         // console.log(samples)
+    //     var samples = data.samples
+    //     // console.log(samples)
         
-//         var values = samples.map(sample => sample.sample_values)
-//         // console.log(values)
-//         // var value = values[0]
-//         // console.log(value)
+    //     var values = samples.map(sample => sample.sample_values)
+    //     // console.log(values)
+    //     // var value = values[0]
+    //     // console.log(value)
 
-//         var labels = samples.map(sample => sample.otu_ids)
-//         // console.log(labels)
-//         // var label = labels[0]
+    //     var labels = samples.map(sample => sample.otu_ids)
+    //     // console.log(labels)
+    //     // var label = labels[0]
 
-//         var hovertexts = samples.map(sample => sample.otu_labels)
-//         // console.log(hovertexts)
-//         // var hovertext = hovertexts[0]
+    //     var hovertexts = samples.map(sample => sample.otu_labels)
+    //     // console.log(hovertexts)
+    //     // var hovertext = hovertexts[0]
 
-//         var names = json_data.names
-//         var names_indices = names.map((item,index) => [index,item])
-//         // console.log(names_indices)
+    //     var names = json_data.names
+    //     var names_indices = names.map((item,index) => [index,item])
+    //     // console.log(names_indices)
         
-//         names_indices.forEach(function(item){
-//             // console.log(item)
-//             if (dp_value === item[1]) {
-//                 var subject = item[0]
-//                 console.log(subject)
-
-
-//             }   
-//         })
-//     })
-// }
-
-// // d3.json(json).then(function(data){
-// //     var json_data = data
-// //     var names = json_data.names
-// //     var names_indices = []
-// //     names.forEach(function(item,index) {
-// //         console.log(index,item)
-// //         // names_indices.push(index)
-// //         // console.log(names_indices)
-// //     })
-// // })
+    //     names_indices.forEach(function(item){
+    //         // console.log(item)
+    //         if (dp_value === item[1]) {
+    //             var subject = item[0]
+    //             console.log(subject)
+    //         }   
+    //     })
+    // })
+}
 
 init()
