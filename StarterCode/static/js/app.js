@@ -65,6 +65,7 @@ function buildCharts(data) {
                 y: sample_values,
                 mode: "markers",
                 marker: {
+                    color: otu_ids,
                     size: sample_values
                 }
             };
@@ -96,8 +97,6 @@ function buildCharts(data) {
 };    
 
 function eventHandler() {
-    d3.event.preventDefault();
-
     var dropdown = d3.select("#selDataset");
     var sample_number = dropdown.property("value");
     
