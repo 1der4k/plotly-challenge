@@ -61,11 +61,11 @@ function buildCharts(data) {
 
     // Build bubble chart
     var trace2 = {
-        x: label,
-        y: value,
+        x: otu_ids,
+        y: sample_values,
         mode: "markers",
         marker: {
-            size: values[0]
+            size: sample_values
         }
     }
 
