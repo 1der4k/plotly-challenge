@@ -54,7 +54,8 @@ function buildCharts(data) {
             var data1 = [trace1];
 
             var layout1 = {
-                title: "Top 10 Bacteria Cultures Observed"
+                title: "Top 10 Bacteria Cultures Observed",
+                width: 1000
             };
 
             Plotly.newPlot("bar",data1,layout1);
