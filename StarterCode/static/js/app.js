@@ -104,22 +104,22 @@ function eventHandler() {
     dropdown.on("change",updateCharts(sample_number))
 }
 
-// function resetData() {
-//     var demographicsPanel = d3.select("#sample-metadata");
-//     var barChart = d3.select("#bar");
-//     var bubbleChart = d3.select("#bubble");
+function resetData() {
+    var Panel = d3.select("#sample-metadata");
+    var bar = d3.select("#bar");
+    var bubble = d3.select("#bubble");
 
-//     demographicsPanel.html("");
-//     barChart.html("");
-//     bubbleChart.html("");
-// }
+    Panel.html("");
+    bar.html("");
+    bubble.html("");
+}
 
 function updateCharts(sample_number) {
     d3.json(json).then(function(data) {
         var json_data = data
     
 
-    // resetData()
+    resetData()
 
     buildCharts(json_data)
     
