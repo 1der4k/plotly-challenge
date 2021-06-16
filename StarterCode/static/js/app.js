@@ -74,7 +74,8 @@ function buildCharts(data) {
             var data2 = [trace2];
 
             var layout2 = {
-                title: "Bacteria Cultures Per Sample"
+                title: "Bacteria Cultures Per Sample",
+                height: 1000
             };
 
             Plotly.newPlot("bubble",data2,layout2);
